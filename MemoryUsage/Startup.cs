@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,8 @@ namespace MemoryUsage
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            Console.WriteLine($"Server GC is currently {(GCSettings.IsServerGC ? "ENABLED" : "DISABLED")}");
 
             app.Map("/diagnostics", builder => builder.Run(async (context) =>
             {
